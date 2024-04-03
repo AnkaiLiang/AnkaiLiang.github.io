@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ankai Liang's Blog - Strong but not aggressive, weak but not feeble.</title><noscript>Please enable JavaScript to view the site</noscript><link rel="icon" href="/img/pwa/favicon.png"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.7.8"><!-- inject head--><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- Open Graph--><meta name="description" content="A SDE who is not boring"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+
+        win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+            const link = document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = url
+            if (id) link.id = id
+            link.onerror = reject
+            link.onload = link.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+            }
+            document.head.appendChild(link)
+        })
+
+        win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = url
+            script.async = true
+            script.onerror = reject
+            script.onload = script.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+            }
+
+            Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+            })
+
+            document.head.appendChild(script)
+        })
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.7.8",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;color:white;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2017-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'highlight.js'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"dark","light":"light"},"copy":{"success":"Copied","error":"Copied failed"},"backtop":"Back to top","time":{"day":" days ago","hour":" hours ago","just":"just","min":" minutes ago","month":" months ago"},"f12":"Developer mode is turned on, please follow the GPL."},
+    aside: {
+        sayhello: {
+            morning: 'The plan for the day lies in the morning.',
+            noon: 'Only when you've eaten your fill do you have the energy to work.',
+            afternoon: 'Concentrate your energy and overcome difficulties.',
+            night: 'Don't tire yourself out too much; early sleep is healthier.',
+            goodnight: 'Have a good sleep to ensure abundant energy.',
+        },
+        sayhello2: [],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {"avatar":"https://cravatar.cn","url":null,"commentBarrage":true,"owo":{"body":".wl-emoji-popup","item":".wl-tab-wrapper button"}},
+    lightbox: 'null',
+    post_ai: {"key":null,"talk":null,"randomPost":false}
+};</script><meta name="generator" content="Hexo 7.1.1"></head><body id="body" data-type="solitude"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="Day and night switching"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="Sidebar display control"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Archives</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>Display mode</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div><span class="sidebar-menu-item-title">Tags</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Distrubute-System/">Distrubute System<sup>2</sup></a><a href="/tags/System-Administration/">System Administration<sup>6</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/Search-Infra/">Search Infra<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="Back to home"><span class="title">Ankai Liang / ex-Googler / ByteDancer</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Ankai Liang's Blog</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav></header><div id="home_top"><div class="recent-top-post-group" id="recent-top-post-group"><div class="recent-post-top" id="recent-post-top"><div id="bannerGroup"><div id="banners"><div class="banners-title"><div class="banners-title-big">Strong but not aggressive<br>weak but not feeble.</div><div class="banners-title-small">/about/</div></div><div class="banners-links"><a class="banners-link-btn" href="/tags/Distrubute-System/" style="background-image:  linear-gradient(to right,#f65,#ffbf37) "><i class="solitude  st-fire-fill "></i><div class="banners-link-title">DS</div></a><a class="banners-link-btn" href="/tags/System-Administration/" style="background-image:  linear-gradient(to right,#358bff,#15c6ff) "><i class="solitude  st-book-mark-fill "></i><div class="banners-link-title">SA</div></a><a class="banners-link-btn" href="/tags/AI/" style="background-image:  linear-gradient(to right,#18e7ae,#1eebeb) "><i class="solitude  st-star-smile-fill "></i><div class="banners-link-title">AI</div></a></div><div class="tags-group-all"><div class="tags-group-wrapper"><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #e9572b"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e42921677-34.png" title="HTML"></div><div class="tags-group-icon" style="background: #f7cb4f"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e43ceddda-34.png" title="JS"></div></div><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #57b6e6"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e45462045-34.png" title="Docker"></div><div class="tags-group-icon" style="background: #ffffff"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e47acbe98-34.png" title="Flutter"></div></div><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #2e3a41"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e488bf8ed-34.png" title="WebPack"></div><div class="tags-group-icon" style="background: #df5b40"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e499066fa-34.png" title="Git"></div></div><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #e9572b"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e42921677-34.png" title="HTML"></div><div class="tags-group-icon" style="background: #f7cb4f"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e43ceddda-34.png" title="JS"></div></div><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #57b6e6"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e45462045-34.png" title="Docker"></div><div class="tags-group-icon" style="background: #ffffff"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e47acbe98-34.png" title="Flutter"></div></div><div class="tags-group-icon-pair"><div class="tags-group-icon" style="background: #2e3a41"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e488bf8ed-34.png" title="WebPack"></div><div class="tags-group-icon" style="background: #df5b40"><img class="nolazyload" src="https://7.isyangs.cn/34/65f2e499066fa-34.png" title="Git"></div></div></div></div></div><div class="categoryGroup"><div class="categoryItem"><a class="categoryButton" href="/tags/Distrubute-System/" if array[2] style="background: linear-gradient(to right,#f65,#ffbf37);"><span class="categoryButtonText">DS</span><i class="solitude st-fire-fill"></i></a></div><div class="categoryItem"><a class="categoryButton" href="/tags/System-Administration/" if array[2] style="background: linear-gradient(to right,#358bff,#15c6ff);"><span class="categoryButtonText">SA</span><i class="solitude st-book-mark-fill"></i></a></div></div></div><div class="topGroup"><script>function GoTodayCard() {
+    window.open("https://solitude-docs.efu.me/", "_blank");
+}</script><div class="todayCard" id="todayCard" onclick="GoTodayCard()"><div class="todayCard-info"><div class="todayCard-tips">Recommend</div><div class="todayCard-title">Solitude theme</div></div><div class="todayCard-cover nolazyload" style="background: url('/img/default3.png') no-repeat center /cover"></div><div class="banner-button-group"><a class="banner-button" onclick="window.event.cancelBubble=true;sco.hideTodayCard();"><i class="solitude st-add-fill"></i><span class="banner-button-text">More</span></a></div></div></div></div></div></div><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div id="category-bar"><div class="category-bar-items" id="category-bar-items"><div class="category-bar-item select" id="category-bar-home"><a href="/">Home</a></div></div><div class="category-bar-right"><a class="category-bar-more" href="/categories/">More</a></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2023/08/17/Semi-Structured-Search/')"><div class="post_cover"><a href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search"><img class="post_bg" src="/img/default4.png" alt="Semi-Structured Search"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><span class="original">New</span><a class="unvisited-post" href="/2023/08/17/Semi-Structured-Search/">Unread</a></div><a class="article-title" href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search">Semi-Structured Search</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Search-Infra/" onclick="event.stopPropagation();"><span class="tags-punctuation">Search Infra</span></a></span><span class="post-meta-date"><time datetime="2023-08-18T03:00:42.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/17/DHT-REMOTE/')"><div class="post_cover"><a href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE"><img class="post_bg" src="/img/default3.png" alt="DHT-REMOTE"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/17/DHT-REMOTE/">Unread</a></div><a class="article-title" href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE">DHT-REMOTE</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Distrubute-System/" onclick="event.stopPropagation();"><span class="tags-punctuation">Distrubute System</span></a></span><span class="post-meta-date"><time datetime="2017-08-18T03:00:42.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/17/Page-Rank-Hadoop/')"><div class="post_cover"><a href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop"><img class="post_bg" src="/img/default3.png" alt="Page Rank - Hadoop"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/17/Page-Rank-Hadoop/">Unread</a></div><a class="article-title" href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop">Page Rank - Hadoop</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Distrubute-System/" onclick="event.stopPropagation();"><span class="tags-punctuation">Distrubute System</span></a></span><span class="post-meta-date"><time datetime="2017-08-18T02:43:25.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/17/RushHour/')"><div class="post_cover"><a href="/2017/08/17/RushHour/" title="RushHour"><img class="post_bg" src="/img/default5.png" alt="RushHour"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/17/RushHour/">Unread</a></div><a class="article-title" href="/2017/08/17/RushHour/" title="RushHour">RushHour</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/AI/" onclick="event.stopPropagation();"><span class="tags-punctuation">AI</span></a></span><span class="post-meta-date"><time datetime="2017-08-18T02:17:52.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/17/Text-processing-in-Linux/')"><div class="post_cover"><a href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing"><img class="post_bg" src="/img/default5.png" alt="Text-processing"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/17/Text-processing-in-Linux/">Unread</a></div><a class="article-title" href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing">Text-processing</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-08-17T07:32:41.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/')"><div class="post_cover"><a href="/2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/" title="afewmore"><img class="post_bg" src="/img/default4.png" alt="afewmore"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/">Unread</a></div><a class="article-title" href="/2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/" title="afewmore">afewmore</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-08-17T07:32:41.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/16/tcpdump-1-DNS/')"><div class="post_cover"><a href="/2017/08/16/tcpdump-1-DNS/" title="tcpdump(1) DNS"><img class="post_bg" src="/img/default.png" alt="tcpdump(1) DNS"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/16/tcpdump-1-DNS/">Unread</a></div><a class="article-title" href="/2017/08/16/tcpdump-1-DNS/" title="tcpdump(1) DNS">tcpdump(1) DNS</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-08-17T06:27:53.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/16/Using-Manages-packages-in-Linux/')"><div class="post_cover"><a href="/2017/08/16/Using-Manages-packages-in-Linux/" title="Using Manages packages in Linux"><img class="post_bg" src="/img/default4.png" alt="Using Manages packages in Linux"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/16/Using-Manages-packages-in-Linux/">Unread</a></div><a class="article-title" href="/2017/08/16/Using-Manages-packages-in-Linux/" title="Using Manages packages in Linux">Using Manages packages in Linux</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-08-17T06:17:49.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/08/16/Using-the-AWS-CLI-to-set-instance/')"><div class="post_cover"><a href="/2017/08/16/Using-the-AWS-CLI-to-set-instance/" title="Using the AWS-CLI to set instance"><img class="post_bg" src="/img/default5.png" alt="Using the AWS-CLI to set instance"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/08/16/Using-the-AWS-CLI-to-set-instance/">Unread</a></div><a class="article-title" href="/2017/08/16/Using-the-AWS-CLI-to-set-instance/" title="Using the AWS-CLI to set instance">Using the AWS-CLI to set instance</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-08-17T06:04:16.000Z"></time></span></div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2017/05/19/Install%20and%20Configure%20AWS%20Tools/')"><div class="post_cover"><a href="/2017/05/19/Install%20and%20Configure%20AWS%20Tools/" title="Install and Configure AWS Tools"><img class="post_bg" src="/img/default.png" alt="Install and Configure AWS Tools"></a></div><div class="recent-post-info"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><a class="unvisited-post" href="/2017/05/19/Install%20and%20Configure%20AWS%20Tools/">Unread</a></div><a class="article-title" href="/2017/05/19/Install%20and%20Configure%20AWS%20Tools/" title="Install and Configure AWS Tools">Install and Configure AWS Tools</a></div><break></break><div class="article-meta-wrap"><span class="article-meta tags"><a class="article-meta__tags" href="/tags/System-Administration/" onclick="event.stopPropagation();"><span class="tags-punctuation">System Administration</span></a></span><span class="post-meta-date"><time datetime="2017-05-19T10:32:39.000Z"></time></span></div></div></div><!-- pageination--><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><div class="toPageGroup"><input id="toPageText" oninput="value=value.replace(/[^0-9]/g,'')" maxlength="3" title="跳转到指定页面" onkeyup="if (this.value === '0') this.value = ''"><a id="toPageButton" onclick="sco.toPage()"><i class="solitude st-show-right-line"></i></a></div></div></nav></div><!-- aside--><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="Avatar" src="/img/avatar.png"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="Mood sticker"></div></div><div class="author-info__description_group"><div class="author-info__description">Share my <b>passion</b> for programming, <b>aspiration</b> for a better life, and <b>journey</b> of exploring the ocean of knowledge.</div><div class="author-info__description2"></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Ankai Liang</div><div class="author-info__desc">Strong but not aggressive, weak but not feeble.</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/ankaiLiang" title="Github"><i class="solitude  st-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.instagram.com/ankai_liang/" title="Instagram"><i class="solitude  st-image-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/ankai-liang-a774b3119?trk=hp-identity-name" title="LinkedIn"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.facebook.com/lakeandgod" title="Facebook"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="http://weibo.com/1783077873/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" title="weibo"><i class="solitude  st-contacts-fill"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Distrubute-System/">Distrubute System<sup>2</sup></a><a href="/tags/System-Administration/">System Administration<sup>6</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/Search-Infra/">Search Infra<sup>1</sup></a></div><style>.card-tag-cloud::after {
+    display: none !important;
+}</style><hr><div class="webinfo"><div class="webinfo-item"><div class="webinfo-item-title"><i class="item-icon solitude st-folder-fill"></i><div class="item-name">Posts :</div></div><div class="item-count">10</div></div><div class="webinfo-item"><div class="webinfo-item-title"><i class="item-icon solitude st-calendar-todo-fill"></i><div class="item-name">Runtime :</div></div><div class="item-count" id="runtimeshow"></div></div></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span class="solitude">Ankai Liang / ex-Googler / ByteDancer</span></div><div class="footer-bar-description">Article from Ankai Liang's Blog - Strong but not aggressive, weak but not feeble.</div><a class="footer-bar-link" href="/">Learn more</a></div><div id="footer_deal"><div class="nolazyload footer_mini_logo" id="footer_mini_logo" title="Back to top" onclick="sco.toTop()"><img src="/img/pwa/favicon.png" alt="Back to top"></div></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2017 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Ankai Liang</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/valor-x/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.7.8"></script><script src="/js/utils.js?v=1.7.8"></script><script src="/js/third_party/universe.min.js?v=1.7.8"></script><script>dark()
+</script><script src="https://cdn.staticfile.net/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.net/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/third_party/efu_ai.min.js?v=1.7.8"></script><script src="https://cdn.staticfile.net/pace/1.2.4/pace.min.js"></script></div><div id="js-pjax"><script id="config-diff">var PAGE_CONFIG = {
+    is_post: false,
+    is_page: false,
+    is_home: true,
+    page: 'solitude',
+    toc: false,
+    comment: false,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- music--></body></html><script>const posts=["2023/08/17/Semi-Structured-Search/","2017/08/17/DHT-REMOTE/","2017/08/17/Page-Rank-Hadoop/","2017/08/17/RushHour/","2017/08/17/Text-processing-in-Linux/","2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/","2017/08/16/tcpdump-1-DNS/","2017/08/16/Using-Manages-packages-in-Linux/","2017/08/16/Using-the-AWS-CLI-to-set-instance/","2017/05/19/Install and Configure AWS Tools/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>

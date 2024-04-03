@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DHT-REMOTE | Ankai Liang's Blog</title><noscript>Please enable JavaScript to view the site</noscript><link rel="icon" href="/img/pwa/favicon.png"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.7.8"><!-- inject head--><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- Open Graph--><meta name="description" content="DHT-REMOTE"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+
+        win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+            const link = document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = url
+            if (id) link.id = id
+            link.onerror = reject
+            link.onload = link.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+            }
+            document.head.appendChild(link)
+        })
+
+        win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = url
+            script.async = true
+            script.onerror = reject
+            script.onload = script.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+            }
+
+            Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+            })
+
+            document.head.appendChild(script)
+        })
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.7.8",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;color:white;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2017-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'highlight.js'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"dark","light":"light"},"copy":{"success":"Copied","error":"Copied failed"},"backtop":"Back to top","time":{"day":" days ago","hour":" hours ago","just":"just","min":" minutes ago","month":" months ago"},"f12":"Developer mode is turned on, please follow the GPL."},
+    aside: {
+        sayhello: {
+            morning: 'The plan for the day lies in the morning.',
+            noon: 'Only when you've eaten your fill do you have the energy to work.',
+            afternoon: 'Concentrate your energy and overcome difficulties.',
+            night: 'Don't tire yourself out too much; early sleep is healthier.',
+            goodnight: 'Have a good sleep to ensure abundant energy.',
+        },
+        sayhello2: [],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {"avatar":"https://cravatar.cn","url":null,"commentBarrage":true,"owo":{"body":".wl-emoji-popup","item":".wl-tab-wrapper button"}},
+    lightbox: 'null',
+    post_ai: {"key":null,"talk":null,"randomPost":false}
+};</script><meta name="generator" content="Hexo 7.1.1"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="Day and night switching"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="Sidebar display control"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Archives</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>Display mode</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div><span class="sidebar-menu-item-title">Tags</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Distrubute-System/">Distrubute System<sup>2</sup></a><a href="/tags/System-Administration/">System Administration<sup>6</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/Search-Infra/">Search Infra<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="Back to home"><span class="title">Ankai Liang / ex-Googler / ByteDancer</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">DHT-REMOTE</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default3.png" alt="DHT-REMOTE"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="This article is a Original article, pay attention to the copyright.">Original</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Distrubute-System/"><span class="tags-name tags-punctuation">Distrubute System</span></a></div></div></div></div><h1 class="post-title">DHT-REMOTE</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><div class="post-ai"><div class="ai-title"><div class="ai-title-left"><i class="ai-title-icon solitude st-robot-fill"></i><div class="ai-title-text">文章摘要</div></div><div class="ai-tag" id="ai-tag">GPT 4</div></div><div class="ai-explanation" style="display: block;"></div><div class="ai-suggestions"></div><div class="ai-bottom"><div class="ai-tips"></div><a class="ai-report" title="投诉" target="_blank" rel="noopener" href="https://efu.me/">投诉</a></div></div><article class="post-content" id="article-container"><h1 id="DHT-REMOTE"><a href="#DHT-REMOTE" class="headerlink" title="DHT-REMOTE"></a>DHT-REMOTE</h1><ul>
+<li>Ankai Liang</li>
+<li>10411998</li>
+<li>CS 549 Assignment4</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/AnkaiLiang/dht-remote">code link</a></li>
+</ul>
+<h2 id="Code-Explanation"><a href="#Code-Explanation" class="headerlink" title="Code Explanation"></a>Code Explanation</h2><p>On this assisgnment, we extend the program we did last time with a push-based protocol. So there are a lot code snippets are the same as before. I just list the new sippets I added this time.</p>
+<h3 id="ControllerClient-java"><a href="#ControllerClient-java" class="headerlink" title="ControllerClient.java"></a>ControllerClient.java</h3><p>Create a instance of ClientEndpointConfig, using <code>CommandLineEncoder</code> as encoder.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// TODO configure the client to use proper encoder for messages sent to server</span><br><span class="line">private final ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().</span><br><span class="line">		encoders(Arrays.asList(CommandLineEncoder.class)).build();</span><br></pre></td></tr></table></figure>
+<p>When we need to connect to a remote node.</p>
+<ol>
+<li>Create a instance of <code>ClientManager</code> </li>
+<li>Keep looping to wait for the ack from the remote node until got the ack.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(URI uri)</span> <span class="keyword">throws</span> DeploymentException, IOException &#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		shell.msg(<span class="string">&quot;Requesting control of node at &quot;</span> + uri.toString() + <span class="string">&quot;...&quot;</span>);</span><br><span class="line">		<span class="comment">// TODO done make the connection request</span></span><br><span class="line">		<span class="type">ClientManager</span> <span class="variable">clientManager</span> <span class="operator">=</span> ClientManager.createClient(ContainerProvider.getWebSocketContainer());</span><br><span class="line">		session = clientManager.connectToServer(<span class="built_in">this</span>, cec, uri);</span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">// Synchronize with receipt of an ack from the remote node.</span></span><br><span class="line">				<span class="type">boolean</span> <span class="variable">connected</span> <span class="operator">=</span> messageLatch.await(<span class="number">100</span>, TimeUnit.SECONDS);</span><br><span class="line">				<span class="comment">// TODO done If we are connected, a new toplevel shell has been pushed, execute its CLI.</span></span><br><span class="line">				<span class="comment">// Be sure to return when done, to exit the loop.</span></span><br><span class="line">				<span class="keyword">if</span> (connected)&#123;</span><br><span class="line">					shellManager.getCurrentShell().cli();</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// Keep on waiting for the specified time interval</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		shell.err(e);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If the session has been created, add this controllclient as message handler, and cache the session.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(Session session, EndpointConfig config)</span> &#123;</span><br><span class="line">	<span class="comment">// TODO session created, add a message handler for receiving communication from server.</span></span><br><span class="line">	<span class="comment">// We should also cache the session for use by some of the other operations.</span></span><br><span class="line">	session.addMessageHandler(<span class="built_in">this</span>);</span><br><span class="line">	<span class="built_in">this</span>.session = session;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If the initializing has not done:</p>
+<ol>
+<li>if got the ack, means request has been accepted. Create a ProxyShell and add this ProxyShell to the stack of Shell. Set the local running shell is this ProxyShell. Flag the initializing has been done.</li>
+<li>If the server rejects our request, they will just close the channel.</li>
+</ol>
+<p>If the initializing has been done, just running the top Shell on stack and via the message to it. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (initializing) &#123;</span><br><span class="line">		<span class="keyword">if</span> (SessionManager.ACK.equals(message)) &#123;</span><br><span class="line">			<span class="comment">/*</span></span><br><span class="line"><span class="comment">			 * TODO done server has accepted our remote control request, push a proxy shell on the shell stack</span></span><br><span class="line"><span class="comment">			 * and flag that initialization has finished (allowing the UI thread to continue).</span></span><br><span class="line"><span class="comment">			 * Make sure to replace the cached shell in this callback with the new proxy shell!</span></span><br><span class="line"><span class="comment">			 * </span></span><br><span class="line"><span class="comment">			 * If the server rejects our request, they will just close the channel.</span></span><br><span class="line"><span class="comment">			 */</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				shell.msgln(<span class="string">&quot;request accepted.&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			shell = ProxyShell.createRemoteController(shell, session.getBasicRemote());</span><br><span class="line">			shellManager.addShell(shell);</span><br><span class="line">			endInitialization();</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Unexpected response to remote control request: &quot;</span> + message);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// TODO done provide the message to the shell</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			shellManager.getCurrentShell().msg(message);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When shotdown, flag the end of initializing and close the session.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">shutdown</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * TODO Shutdown initiated by error or closure of the connection.  Three cases: </span></span><br><span class="line"><span class="comment">		 * 1. We are still initializing when this happens (need to unblock the client thread).</span></span><br><span class="line"><span class="comment">		 * 2. We are running an on-going remote control session (need to remove the proxy shell).</span></span><br><span class="line"><span class="comment">		 * 3. The remote control session has terminated (which caused the channel to be closed).</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">if</span> (initializing) </span><br><span class="line">			endInitialization();</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (session.isOpen())</span><br><span class="line">			session.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ControllerServer-java"><a href="#ControllerServer-java" class="headerlink" title="ControllerServer.java"></a>ControllerServer.java</h3><p>If we recive the “quit” message, we close the the current session. Else, we add the commandLine to the input of the current shell.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@OnMessage</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(String[] commandLine)</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (initializing) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Communication from client before ack of remote control request: &quot;</span> + commandLine[<span class="number">0</span>]);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (commandLine.length &gt; <span class="number">0</span> &amp;&amp; IShell.QUIT.equals(commandLine[<span class="number">0</span>])) &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * TODO Stop the current toplevel (local) shell.  It is sufficient to close the session,</span></span><br><span class="line"><span class="comment">		 * which will trigger a callback on onClose() on both sides of the connection.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		sessionManager.closeCurrentSession();</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   		<span class="comment">/*</span></span><br><span class="line"><span class="comment">   		 * TODO add the commandLine to the input of the current shell</span></span><br><span class="line"><span class="comment">   		 */</span></span><br><span class="line">		shellManager.getCurrentShell().addCommandLine(commandLine);</span><br><span class="line">	&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>ControllerServer @ServerEndpoint (include config for decoders), @OnOpen,@OnMessage, @OnClose. There are the annotates of corresponding methods, which relate to the protocol of web socket.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ServerEndpoint(</span></span><br><span class="line"><span class="meta">		value = &quot;/control/&#123;client&#125;&quot;,</span></span><br><span class="line"><span class="meta">		decoders = CommandLineDecoder.class</span></span><br><span class="line"><span class="meta">		)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ControllerServer</span> &#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@OnError</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">(Throwable t)</span> &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@OnClose</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClose</span><span class="params">(Session session)</span> &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@OnOpen</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(Session session, <span class="meta">@PathParam(&quot;client&quot;)</span> String client)</span> <span class="keyword">throws</span> IOException &#123;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ProxyContext-java"><a href="#ProxyContext-java" class="headerlink" title="ProxyContext.java"></a>ProxyContext.java</h3><p>Override these three method in ContextBase. Implement the text display on remote client console.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">msg</span><span class="params">(String m)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// TODO display the message on the remote client console</span></span><br><span class="line">	sender.sendText(m);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">msgln</span><span class="params">(String m)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// TODO display the message on the remote client console</span></span><br><span class="line">	sender.sendText(m + <span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">err</span><span class="params">(Throwable t)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="comment">// TODO print the stack trace on the remote client console</span></span><br><span class="line">	sender.sendText(t.getMessage() + <span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SessionManager-java"><a href="#SessionManager-java" class="headerlink" title="SessionManager.java"></a>SessionManager.java</h3><p>When we accept the remote control request, we will create a local shell with Proxy context on the server endpoint. Then push that shell on the stack, flag the end of initializing and send the ack to response the remote node.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">acceptSession</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	lock.lock();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 *  TODO We are accepting a remote control request.  Push a local shell with a proxy context</span></span><br><span class="line"><span class="comment">		 *  on the shell stack and flag that initialization has completed.  Confirm acceptance of the </span></span><br><span class="line"><span class="comment">		 *  remote control request by sending an ACK to the client.  The CLI of the newly installed shell</span></span><br><span class="line"><span class="comment">		 *  will be executed by the underlying CLI as part of the &quot;accept&quot; command.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="type">ProxyContext</span> <span class="variable">proxyContext</span> <span class="operator">=</span> ProxyContext.createProxyContext(currentServer.getSession().getBasicRemote());</span><br><span class="line">		<span class="type">LocalShell</span> <span class="variable">localshell</span> <span class="operator">=</span> LocalShell.createRemotelyControlled(ShellManager.</span><br><span class="line">				getShellManager().</span><br><span class="line">				getCurrentShell().</span><br><span class="line">				getLocal(), proxyContext);</span><br><span class="line">		ShellManager.getShellManager().addShell(localshell);</span><br><span class="line">		currentServer.endInitialization();</span><br><span class="line">		proxyContext.msg(SessionManager.ACK);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		lock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>When reject remote control request, call the session <code>close()</code> method. It’ll call the corresponding Onclose method on both sides to deal with the other cleaning task.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">rejectSession</span><span class="params">()</span> &#123;</span><br><span class="line">	lock.lock();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// TODO reject remote control request by closing the session (provide a reason!)</span></span><br><span class="line">		<span class="type">CloseReason</span> <span class="variable">reason</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CloseReason</span>(CloseCodes.CANNOT_ACCEPT, <span class="string">&quot;request rejected&quot;</span>);</span><br><span class="line">		currentServer.getSession().close(reason);</span><br><span class="line">		currentServer = <span class="literal">null</span>;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		lock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>It’s similar with above. The reason is different.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">closeCurrentSession</span><span class="params">()</span> &#123;</span><br><span class="line">	lock.lock();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// TODO normal shutdown of remote control session (provide a reason!)</span></span><br><span class="line">		<span class="type">CloseReason</span> <span class="variable">reason</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CloseReason</span>(CloseCodes.NORMAL_CLOSURE, <span class="literal">null</span>);</span><br><span class="line">		currentServer.getSession().close(reason);</span><br><span class="line">		currentServer = <span class="literal">null</span>;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		lock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ShellManaager-java"><a href="#ShellManaager-java" class="headerlink" title="ShellManaager.java"></a>ShellManaager.java</h3><p>Call the corresponding method on <code>Sessinmanager</code> with the order ‘accept’ or ‘reject’. If the order is ‘accept’, run the top shell on the stack of shell.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TODO Accept the pending session (see SessionManager) and </span></span><br><span class="line"><span class="comment"> * start running the CLI for the new shell that will have been</span></span><br><span class="line"><span class="comment"> * pushed on the shell stack.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(String[] inputs)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="keyword">if</span> (inputs.length != <span class="number">1</span>) &#123;</span><br><span class="line">		msgln(<span class="string">&quot;Usage: accept&quot;</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">		sessionManager.acceptSession();</span><br><span class="line">		shellManager.getCurrentShell().cli();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TODO Reject and remove the pending session (see SessionManager).</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">reject</span><span class="params">(String[] inputs)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="keyword">if</span> (inputs.length != <span class="number">1</span>) &#123;</span><br><span class="line">		msgln(<span class="string">&quot;Usage: reject&quot;</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">		sessionManager.rejectSession();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><ol>
+<li>Basic connect, reject, accept. <ul>
+<li>I create 3 different nodes(17,25,45). </li>
+<li>node 17 connect to node 25, reject and accept.</li>
+</ul>
+</li>
+<li>Connect while already connected (controlling remote node).<ul>
+<li>node 17 connect to node 25, node 25 accept.</li>
+<li>node 25(remote controlled by proxy shell on node 17) connect to node 45, node 45 accept.</li>
+</ul>
+</li>
+<li>Accept while already connected (controlling remote node)<ul>
+<li>node 17 connect to node 25, node 25 accept.</li>
+<li>node 45 connect to node 17, node 17 accept.</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/pwa/favicon.png"></a><div class="post-copyright__author_name">Ankai Liang's Blog</div><div class="post-copyright__author_desc">Strong but not aggressive, weak but not feeble.</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">This piece of writing is an original article, utilizing the<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>Agreement. For complete reproduction, please acknowledge the source as Courtesy of<a href="/">Ankai Liang's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Distrubute-System/"><span class="tags-punctuation"></span>Distrubute System<span class="tagsPageCount">2</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/17/Semi-Structured-Search/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Semi-Structured Search</div></div></a></div><div class="next-post pull-right"><a href="/2017/08/17/Page-Rank-Hadoop/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Page Rank - Hadoop</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude st-chat-fill"></i><span> Comment</span><span></span></div></div><div class="comment-wrap"><div id="comment"></div><script>async function initComment() {
+    const isLazyLoad = !true;
+    let walineInitFunction = window.walineFn || null;
+
+    async function initWaline(Fn) {
+        const walineOptions = {
+            el: '#comment',
+            serverURL: '',
+            pageview: !isLazyLoad,
+            dark: 'html[data-theme="dark"]',
+            path: window.location.pathname,
+            comment: !isLazyLoad,
+            ...null
+        };
+        const walineInstance = Fn(walineOptions);
+
+        utils.addGlobalFn('pjax', () => walineInstance.destroy(), 'destroyWaline');
+    }
+
+    async function loadWalineCSSAndJS() {
+        if (!walineInitFunction) {
+            await getCSS('https://cdn.staticfile.net/waline/3.1.3/waline.min.css');
+            const {init} = await import('https://cdn.staticfile.net/waline/3.1.3/waline.min.js');
+            walineInitFunction = init || Waline.init;
+            window.walineFn = walineInitFunction;
+        }
+        initWaline(walineInitFunction);
+    }
+
+    if (isLazyLoad) {
+        utils.loadComment(document.getElementById('comment'),loadWalineCSSAndJS);
+    } else {
+        await loadWalineCSSAndJS();
+    }
+
+    if (GLOBAL_CONFIG.lightbox) {
+        utils.lightbox(document.querySelectorAll('#comment .wl-content img:not(.wl-emoji)'));
+    }
+
+    sco.owoBig();
+}</script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="Avatar" src="/img/avatar.png"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="Mood sticker"></div></div><div class="author-info__description_group"><div class="author-info__description">Share my <b>passion</b> for programming, <b>aspiration</b> for a better life, and <b>journey</b> of exploring the ocean of knowledge.</div><div class="author-info__description2"></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Ankai Liang</div><div class="author-info__desc">Strong but not aggressive, weak but not feeble.</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/ankaiLiang" title="Github"><i class="solitude  st-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.instagram.com/ankai_liang/" title="Instagram"><i class="solitude  st-image-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/ankai-liang-a774b3119?trk=hp-identity-name" title="LinkedIn"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.facebook.com/lakeandgod" title="Facebook"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="http://weibo.com/1783077873/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" title="weibo"><i class="solitude  st-contacts-fill"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>Table of contents</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DHT-REMOTE"><span class="toc-text">DHT-REMOTE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Code-Explanation"><span class="toc-text">Code Explanation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ControllerClient-java"><span class="toc-text">ControllerClient.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ControllerServer-java"><span class="toc-text">ControllerServer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProxyContext-java"><span class="toc-text">ProxyContext.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionManager-java"><span class="toc-text">SessionManager.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShellManaager-java"><span class="toc-text">ShellManaager.java</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Test"><span class="toc-text">Test</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>New posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search"><img alt="Semi-Structured Search" src="/img/default4.png"></a><div class="content"><a class="title" href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search">Semi-Structured Search</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE"><img alt="DHT-REMOTE" src="/img/default3.png"></a><div class="content"><a class="title" href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE">DHT-REMOTE</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop"><img alt="Page Rank - Hadoop" src="/img/default3.png"></a><div class="content"><a class="title" href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop">Page Rank - Hadoop</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/RushHour/" title="RushHour"><img alt="RushHour" src="/img/default5.png"></a><div class="content"><a class="title" href="/2017/08/17/RushHour/" title="RushHour">RushHour</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing"><img alt="Text-processing" src="/img/default5.png"></a><div class="content"><a class="title" href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing">Text-processing</a></div></div></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span class="solitude">Ankai Liang / ex-Googler / ByteDancer</span></div><div class="footer-bar-description">Article from Ankai Liang's Blog - Strong but not aggressive, weak but not feeble.</div><a class="footer-bar-link" href="/">Learn more</a></div><div id="footer_deal"><div class="nolazyload footer_mini_logo" id="footer_mini_logo" title="Back to top" onclick="sco.toTop()"><img src="/img/pwa/favicon.png" alt="Back to top"></div></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2017 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Ankai Liang</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/valor-x/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.7.8"></script><script src="/js/utils.js?v=1.7.8"></script><script src="/js/third_party/universe.min.js?v=1.7.8"></script><script>dark()
+</script><script src="https://cdn.staticfile.net/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.net/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/third_party/efu_ai.min.js?v=1.7.8"></script><script src="https://cdn.staticfile.net/pace/1.2.4/pace.min.js"></script></div><div id="js-pjax"><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: true,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- music--></body></html><script>const posts=["2023/08/17/Semi-Structured-Search/","2017/08/17/DHT-REMOTE/","2017/08/17/Page-Rank-Hadoop/","2017/08/17/RushHour/","2017/08/17/Text-processing-in-Linux/","2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/","2017/08/16/tcpdump-1-DNS/","2017/08/16/Using-Manages-packages-in-Linux/","2017/08/16/Using-the-AWS-CLI-to-set-instance/","2017/05/19/Install and Configure AWS Tools/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>

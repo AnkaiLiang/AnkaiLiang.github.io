@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semi-Structured Search | Ankai Liang's Blog</title><noscript>Please enable JavaScript to view the site</noscript><link rel="icon" href="/img/pwa/favicon.png"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.7.8"><!-- inject head--><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- Open Graph--><meta name="description" content="DHT-REMOTE"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+
+        win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+            const link = document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = url
+            if (id) link.id = id
+            link.onerror = reject
+            link.onload = link.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+            }
+            document.head.appendChild(link)
+        })
+
+        win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = url
+            script.async = true
+            script.onerror = reject
+            script.onload = script.onreadystatechange = function () {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+            }
+
+            Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+            })
+
+            document.head.appendChild(script)
+        })
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.7.8",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;color:white;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2017-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'highlight.js'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"dark","light":"light"},"copy":{"success":"Copied","error":"Copied failed"},"backtop":"Back to top","time":{"day":" days ago","hour":" hours ago","just":"just","min":" minutes ago","month":" months ago"},"f12":"Developer mode is turned on, please follow the GPL."},
+    aside: {
+        sayhello: {
+            morning: 'The plan for the day lies in the morning.',
+            noon: 'Only when you've eaten your fill do you have the energy to work.',
+            afternoon: 'Concentrate your energy and overcome difficulties.',
+            night: 'Don't tire yourself out too much; early sleep is healthier.',
+            goodnight: 'Have a good sleep to ensure abundant energy.',
+        },
+        sayhello2: [],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {"avatar":"https://cravatar.cn","url":null,"commentBarrage":true,"owo":{"body":".wl-emoji-popup","item":".wl-tab-wrapper button"}},
+    lightbox: 'null',
+    post_ai: {"key":null,"talk":null,"randomPost":false}
+};</script><meta name="generator" content="Hexo 7.1.1"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="Day and night switching"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="Sidebar display control"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Archives</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>Display mode</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div><span class="sidebar-menu-item-title">Tags</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Distrubute-System/">Distrubute System<sup>2</sup></a><a href="/tags/System-Administration/">System Administration<sup>6</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/Search-Infra/">Search Infra<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="Back to home"><span class="title">Ankai Liang / ex-Googler / ByteDancer</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Semi-Structured Search</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>Articals</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>Artical List</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>All tags</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>About</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  st-contacts-fill"></i><span>About</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default4.png" alt="Semi-Structured Search"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="This article is a Original article, pay attention to the copyright.">Original</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Search-Infra/"><span class="tags-name tags-punctuation">Search Infra</span></a></div></div></div></div><h1 class="post-title">Semi-Structured Search</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><div class="post-ai"><div class="ai-title"><div class="ai-title-left"><i class="ai-title-icon solitude st-robot-fill"></i><div class="ai-title-text">文章摘要</div></div><div class="ai-tag" id="ai-tag">GPT 4</div></div><div class="ai-explanation" style="display: block;"></div><div class="ai-suggestions"></div><div class="ai-bottom"><div class="ai-tips"></div><a class="ai-report" title="投诉" target="_blank" rel="noopener" href="https://efu.me/">投诉</a></div></div><article class="post-content" id="article-container"><h1 id="Semi-Structured-Search"><a href="#Semi-Structured-Search" class="headerlink" title="Semi-Structured Search"></a>Semi-Structured Search</h1><h2 id="Why-We-Need-Semi-Structured-Search"><a href="#Why-We-Need-Semi-Structured-Search" class="headerlink" title="Why We Need Semi-Structured Search"></a>Why We Need Semi-Structured Search</h2><p>“To organize the world’s information and make it universally accessible and useful.”</p>
+<h2 id="Key-Features"><a href="#Key-Features" class="headerlink" title="Key Features"></a>Key Features</h2><ul>
+<li><strong>Providing High-Quality Content</strong>: Deduplication, delivery of high-quality third-party information, filtering, and ranking.</li>
+<li><strong>Rich Interactivity</strong>: Includes features like SaveItems, Reading List, Carousels&#x2F;grid pack, tag&#x2F;filter.</li>
+<li><strong>Multi-Dimensional Manner of Information Retrieval</strong>: Provides multiple ways to retrieve information based on the characteristics of the verticals, such as:<ul>
+<li><strong>Events</strong>: Sorting based on Location&#x2F;Time&#x2F;Performer. For example, “events near me,” “Events in the next month,” “Lady Gaga’s events.”</li>
+<li><strong>Recipe</strong>: Sorting based on Dish&#x2F;Meal_time&#x2F;cuisine&#x2F;ingredient. For example, “how to cook Chinese pork belly.”</li>
+</ul>
+</li>
+<li><strong>Rich Information Content</strong>: Features a wide range of information such as pictures, videos, clustering, ratings, addresses, previews, books, ticket purchase links, etc.</li>
+<li><strong>High Scalability</strong>: Can be triggered by different primary query intents as derived_intent, aiming to satisfy users’ potential needs, even the ones they have as yet not realized.</li>
+</ul>
+<h1 id="Why-We-Need-to-apply-this-in-our-search-infrastructure"><a href="#Why-We-Need-to-apply-this-in-our-search-infrastructure" class="headerlink" title="Why We Need to apply this in our search infrastructure"></a>Why We Need to apply this in our search infrastructure</h1><h2 id="Primary-Features"><a href="#Primary-Features" class="headerlink" title="Primary Features"></a>Primary Features</h2><ul>
+<li><strong>Establish Unified Standards and Frameworks</strong>: Includes MRFT for intents, Scubed Engine for resolution, Recomidia for clustering, and Pringles for tags&#x2F;chips.</li>
+<li><strong>Increase Code Reuse Rate</strong>: Modules such as cache, item preview, retrieval, ranking, deduplication, packmsg, saveItems, personalization, tag&#x2F;chips can be reused. Other features include the online survey template and live experiment logger.</li>
+<li><strong>Configuration-Driven Development</strong>: Features like intent to fulfillment mappings, response strategy config, bidder config, etcetera are configuration-driven.</li>
+</ul>
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><h3 id="Knowledge-Graph-KG"><a href="#Knowledge-Graph-KG" class="headerlink" title="Knowledge Graph (KG)"></a>Knowledge Graph (KG)</h3><p>Knowledge Graph is a large database that stores vast amounts of entities and relationships between these entities. The basic unit is <code>Triple</code>, which contains 3 parts: <code>Subject</code>, <code>Predicate</code>, <code>Object</code>. This content is only supported in a Feishu Docs.</p>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><p><code>Query Intents</code> (QI) and <code>Derived Intents</code> (DI) are generated in the query understanding service (QUS). Sub-derived intents are only used in the this semi-structure search framework. They’re generated based on QI or DI in the pre-resolution stage.</p>
+<h1 id="How-this-Semi-Structured-Search-Works"><a href="#How-this-Semi-Structured-Search-Works" class="headerlink" title="How this Semi-Structured Search Works"></a>How this Semi-Structured Search Works</h1><p>This content is only supported in a Feishu Docs</p>
+<h2 id="Query-Understanding-QUS"><a href="#Query-Understanding-QUS" class="headerlink" title="Query Understanding - QUS"></a>Query Understanding - QUS</h2><ol>
+<li><p>With support from Knowledge Graph (KG) and NLP (Natural Language Processing), Query Understanding Service (QUS) can automatically extract patterns from given examples. This mechanism simplifies generating query to Query Intent (QI) mappings. For instance:</p>
+<ul>
+<li>INTENT <code>Find_recipe(ingredient=$&#123;ingredient&#125;)</code> may be triggered by queries like “How to cook beef”, “The best tomato recipes”, “Lamp recipe recommendations”, etc. resulting in patterns such as “How to cook ${ingredient}”, “The best ${ingredient} recipes”, “${ingredient} recipe recommendations”.</li>
+<li>INTENT <code>Find_recipe(dish=$&#123;dish&#125;, cuisine=$&#123;cuisine&#125;)</code> can be triggered by queries like “How to cook chinese pork steaks”, “chinese pork recipes”, etc. resulting in patterns like “How to cook ${cuisine} ${ingredient}”,  “${cuisine} ${ingredient} recipes”.</li>
+</ul>
+</li>
+<li><p>QUS also provides an intent score for each QI. Web service attempts to fulfill all Query Intents (QIs) exceeding the threshold and the corresponding Derived Intents (DIs). With KG’s aid, QUS might pick the winner at the QUS stage. For example, for searches like “Barack Obama’s university,” initial intents may be <code>Find_School (owner=/m/barack_obama)</code> and <code>Find_School (graduated_student=/m/barack_obama)</code>. Based on KG’s relationship data, the second intent might prevail during the QUS.</p>
+</li>
+<li><p>After multiple Query Intents (QIs) and their Derived Intents (DIs) are fulfilled,  Web Service calculates a fulfillment score based on content quality. The Query Intent with the highest sum of “intent score” and “fulfillment score” is the winner and shown to the users.</p>
+</li>
+</ol>
+<h2 id="Retrieval-Scubed-Engine-Scubed-S-3-Semi-structured-search"><a href="#Retrieval-Scubed-Engine-Scubed-S-3-Semi-structured-search" class="headerlink" title="Retrieval - Scubed Engine (Scubed &#x3D; S^3 &#x3D; Semi-structured-search)"></a>Retrieval - Scubed Engine (Scubed &#x3D; S^3 &#x3D; Semi-structured-search)</h2><ol>
+<li><p>Scubed Engine, akin to Elastic Search, supports Term-Based search, distributed storage and processing, flexible data schema, fuzzy matching, geo-queries, date-range queries, and more.</p>
+</li>
+<li><p>Each vertical category needs to build its corpus, allowing search services to be optimized based on the unique characteristics of each vertical. For example, Books vertical has a long update cycle, so it may need to be fully updated once a week, while Events vertical needs to respond to geo-queries, which means its index should be optimized based on the Geo info.</p>
+</li>
+<li><p>Scubed Engine readily supports indexing from Knowledge Graphs through <code>PathQuery</code>, a Knowledge Graph query language. Here is an example of an <code>EventRecord</code>:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EventRecord =</span><br><span class="line">[type/object/type == /time/event/].&#123;</span><br><span class="line">    Title: /object/name</span><br><span class="line">    Location: /time/event/location</span><br><span class="line">    Description: /time/event/description</span><br><span class="line">    TicketLink: /time/event/ticket./ticket/url</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Lightweight ranking is done within Scubed Engine. Each record has various ranking signals generated from different sources (AI annotators, third-party platforms, aggregated statistical numbers, etc.). Each vertical can define its own lightweight ranking strategy with Scubed through a script, usually focusing on popularity and topicality scores.</p>
+</li>
+<li><p>Scubed, by default, returns the top 500 records to the evaluator.</p>
+</li>
+</ol>
+<h2 id="Ranking"><a href="#Ranking" class="headerlink" title="Ranking"></a>Ranking</h2><p>Ranking includes item-level ranking (lightweight + heavyweight) and whole-page ranking.</p>
+<h3 id="Item-level-Ranking"><a href="#Item-level-Ranking" class="headerlink" title="Item-level Ranking"></a>Item-level Ranking</h3><p>Lightweight ranking was discussed earlier, while heavyweight ranking takes place in Twiddle. Here a more complex ranking is done considering many factors. As with the lightweight ranking, each vertical has its own strategy.<br>For <code>P13N</code> calls, the heavyweight ranking is taken by the Recommendation ML model. It takes <code>user_embedding_vector</code>, <code>doc_embedding_vector</code>, use explicitly configured preferences, among other signals as input, generating a more accurate affinity score based on collaborative filtering algorithms.</p>
+<h3 id="Whole-page-Ranking"><a href="#Whole-page-Ranking" class="headerlink" title="Whole-page Ranking"></a>Whole-page Ranking</h3><p>Based on the final results shown to the user (pictures, click buttons, content quality, etc.), Web Service calculates a “fulfillment score” for each QI&#x2F;DI fulfillment, which decides the rank of this feature on the whole page.</p>
+<h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><h2 id="In-Development"><a href="#In-Development" class="headerlink" title="In Development"></a>In Development</h2><h3 id="Ewok"><a href="#Ewok" class="headerlink" title="Ewok"></a>Ewok</h3><p>Ewok serves a function analogous to the Fetch &amp; Review platform. It’s an internal platform for raters to conduct blind tests between the base and test versions. RD takes responsibility for triaging both wins and losses, then determines which brackets should be fixed in collaboration with the PM.</p>
+<h3 id="Bug-Bash"><a href="#Bug-Bash" class="headerlink" title="Bug Bash"></a>Bug Bash</h3><p>A meeting involving engineers from the front end, back end, serving, and data sides. The objective is to interact with a demo and try to identify as many bugs as possible.</p>
+<h2 id="Before-Launch"><a href="#Before-Launch" class="headerlink" title="Before-Launch"></a>Before-Launch</h2><h3 id="Live-experiment"><a href="#Live-experiment" class="headerlink" title="Live-experiment"></a>Live-experiment</h3><p>There are two types of live experiments: counterfactual and non-counterfactual.</p>
+<h4 id="Counterfactual-Experiment"><a href="#Counterfactual-Experiment" class="headerlink" title="Counterfactual Experiment"></a>Counterfactual Experiment</h4><p>Counterfactual is defined as “what would have happened otherwise.” It intends to eliminate “selection bias” when the distribution of the observed group is not representative of the target group of interest.</p>
+<p>Counterfactual example:</p>
+<ul>
+<li>Queries that trigger the feature on the control group would also trigger the feature on the experimental group: 7%</li>
+<li>Queries that trigger the feature on the control group but not on experimental group: 3%</li>
+<li>Queries that didn’t trigger on the control group but did so on experimental group: 23%</li>
+<li>Queries that didn’t trigger the feature on either the control group or the experimental group: 67%</li>
+</ul>
+<p>In a counterfactual experiment, backend logic runs twice for each query; once for the control group and once for the experimental group. The experimental framework logs the conditions from both runs, but users only see one side. Metrics can be sliced based on any combination of conditions. </p>
+<p>Since counterfactual experiments can eliminate “selection bias,” they’re primarily used for quality-related evaluations. Main metrics include: CTR, Manual Refinement, and Return Rate.</p>
+<h4 id="Non-Counterfactual-Experiment"><a href="#Non-Counterfactual-Experiment" class="headerlink" title="Non-Counterfactual Experiment"></a>Non-Counterfactual Experiment</h4><p>In a non-counterfactual experiment, backend logic runs only once for each query, either for the control group or the experimental group. Users will only see one side. This type of experiment is used to evaluate latency impacts. </p>
+<h3 id="Online-Survey"><a href="#Online-Survey" class="headerlink" title="Online Survey"></a>Online Survey</h3><p>Along with the live experiment, there may be an option to direct real users to a quick survey. The features share the same questionnaire template, aiming to understand user intent and satisfaction.</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/pwa/favicon.png"></a><div class="post-copyright__author_name">Ankai Liang's Blog</div><div class="post-copyright__author_desc">Strong but not aggressive, weak but not feeble.</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">This piece of writing is an original article, utilizing the<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>Agreement. For complete reproduction, please acknowledge the source as Courtesy of<a href="/">Ankai Liang's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Search-Infra/"><span class="tags-punctuation"></span>Search Infra<span class="tagsPageCount">1</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2017/08/17/DHT-REMOTE/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DHT-REMOTE</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude st-chat-fill"></i><span> Comment</span><span></span></div></div><div class="comment-wrap"><div id="comment"></div><script>async function initComment() {
+    const isLazyLoad = !true;
+    let walineInitFunction = window.walineFn || null;
+
+    async function initWaline(Fn) {
+        const walineOptions = {
+            el: '#comment',
+            serverURL: '',
+            pageview: !isLazyLoad,
+            dark: 'html[data-theme="dark"]',
+            path: window.location.pathname,
+            comment: !isLazyLoad,
+            ...null
+        };
+        const walineInstance = Fn(walineOptions);
+
+        utils.addGlobalFn('pjax', () => walineInstance.destroy(), 'destroyWaline');
+    }
+
+    async function loadWalineCSSAndJS() {
+        if (!walineInitFunction) {
+            await getCSS('https://cdn.staticfile.net/waline/3.1.3/waline.min.css');
+            const {init} = await import('https://cdn.staticfile.net/waline/3.1.3/waline.min.js');
+            walineInitFunction = init || Waline.init;
+            window.walineFn = walineInitFunction;
+        }
+        initWaline(walineInitFunction);
+    }
+
+    if (isLazyLoad) {
+        utils.loadComment(document.getElementById('comment'),loadWalineCSSAndJS);
+    } else {
+        await loadWalineCSSAndJS();
+    }
+
+    if (GLOBAL_CONFIG.lightbox) {
+        utils.lightbox(document.querySelectorAll('#comment .wl-content img:not(.wl-emoji)'));
+    }
+
+    sco.owoBig();
+}</script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="Avatar" src="/img/avatar.png"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="Mood sticker"></div></div><div class="author-info__description_group"><div class="author-info__description">Share my <b>passion</b> for programming, <b>aspiration</b> for a better life, and <b>journey</b> of exploring the ocean of knowledge.</div><div class="author-info__description2"></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Ankai Liang</div><div class="author-info__desc">Strong but not aggressive, weak but not feeble.</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/ankaiLiang" title="Github"><i class="solitude  st-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.instagram.com/ankai_liang/" title="Instagram"><i class="solitude  st-image-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/ankai-liang-a774b3119?trk=hp-identity-name" title="LinkedIn"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://www.facebook.com/lakeandgod" title="Facebook"><i class="solitude  st-contacts-fill"></i></a><a class="social-icon" target="_blank" rel="noopener" href="http://weibo.com/1783077873/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" title="weibo"><i class="solitude  st-contacts-fill"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>Table of contents</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Semi-Structured-Search"><span class="toc-text">Semi-Structured Search</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-We-Need-Semi-Structured-Search"><span class="toc-text">Why We Need Semi-Structured Search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Features"><span class="toc-text">Key Features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-to-apply-this-in-our-search-infrastructure"><span class="toc-text">Why We Need to apply this in our search infrastructure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Primary-Features"><span class="toc-text">Primary Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Terminology"><span class="toc-text">Terminology</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Knowledge-Graph-KG"><span class="toc-text">Knowledge Graph (KG)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intent"><span class="toc-text">Intent</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-this-Semi-Structured-Search-Works"><span class="toc-text">How this Semi-Structured Search Works</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Query-Understanding-QUS"><span class="toc-text">Query Understanding - QUS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrieval-Scubed-Engine-Scubed-S-3-Semi-structured-search"><span class="toc-text">Retrieval - Scubed Engine (Scubed &#x3D; S^3 &#x3D; Semi-structured-search)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ranking"><span class="toc-text">Ranking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-level-Ranking"><span class="toc-text">Item-level Ranking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Whole-page-Ranking"><span class="toc-text">Whole-page Ranking</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Evaluation"><span class="toc-text">Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#In-Development"><span class="toc-text">In Development</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ewok"><span class="toc-text">Ewok</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bug-Bash"><span class="toc-text">Bug Bash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Before-Launch"><span class="toc-text">Before-Launch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Live-experiment"><span class="toc-text">Live-experiment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Counterfactual-Experiment"><span class="toc-text">Counterfactual Experiment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Non-Counterfactual-Experiment"><span class="toc-text">Non-Counterfactual Experiment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Online-Survey"><span class="toc-text">Online Survey</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>New posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search"><img alt="Semi-Structured Search" src="/img/default4.png"></a><div class="content"><a class="title" href="/2023/08/17/Semi-Structured-Search/" title="Semi-Structured Search">Semi-Structured Search</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE"><img alt="DHT-REMOTE" src="/img/default3.png"></a><div class="content"><a class="title" href="/2017/08/17/DHT-REMOTE/" title="DHT-REMOTE">DHT-REMOTE</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop"><img alt="Page Rank - Hadoop" src="/img/default3.png"></a><div class="content"><a class="title" href="/2017/08/17/Page-Rank-Hadoop/" title="Page Rank - Hadoop">Page Rank - Hadoop</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/RushHour/" title="RushHour"><img alt="RushHour" src="/img/default5.png"></a><div class="content"><a class="title" href="/2017/08/17/RushHour/" title="RushHour">RushHour</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing"><img alt="Text-processing" src="/img/default5.png"></a><div class="content"><a class="title" href="/2017/08/17/Text-processing-in-Linux/" title="Text-processing">Text-processing</a></div></div></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span class="solitude">Ankai Liang / ex-Googler / ByteDancer</span></div><div class="footer-bar-description">Article from Ankai Liang's Blog - Strong but not aggressive, weak but not feeble.</div><a class="footer-bar-link" href="/">Learn more</a></div><div id="footer_deal"><div class="nolazyload footer_mini_logo" id="footer_mini_logo" title="Back to top" onclick="sco.toTop()"><img src="/img/pwa/favicon.png" alt="Back to top"></div></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2017 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Ankai Liang</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/valor-x/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.7.8"></script><script src="/js/utils.js?v=1.7.8"></script><script src="/js/third_party/universe.min.js?v=1.7.8"></script><script>dark()
+</script><script src="https://cdn.staticfile.net/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.net/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/third_party/efu_ai.min.js?v=1.7.8"></script><script src="https://cdn.staticfile.net/pace/1.2.4/pace.min.js"></script></div><div id="js-pjax"><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: true,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- music--></body></html><script>const posts=["2023/08/17/Semi-Structured-Search/","2017/08/17/DHT-REMOTE/","2017/08/17/Page-Rank-Hadoop/","2017/08/17/RushHour/","2017/08/17/Text-processing-in-Linux/","2017/08/17/afewmore-A-tool-of-ec2-how-to-write-a-shell-tool/","2017/08/16/tcpdump-1-DNS/","2017/08/16/Using-Manages-packages-in-Linux/","2017/08/16/Using-the-AWS-CLI-to-set-instance/","2017/05/19/Install and Configure AWS Tools/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>
